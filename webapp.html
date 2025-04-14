@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Killer Whale Joke Generator</title>
+    <link rel="stylesheet" href="css/webappstyle.css">
+    <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/616/616494.png" type="image/png">
+</head>
+<body>
+    <main class="container">
+        <div class="card">
+            <div class="orca-icon" aria-hidden="true">🐋</div>
+            <h1>Killer Whale Joke Generator</h1>
+            <p class="subtitle">Click the button to get a random killer whale joke!</p>
+            <div class="button-group">
+                <button id="generateJoke" class="btn btn-primary">Get a Joke</button>
+                <button id="anotherJoke" class="btn btn-secondary" style="display: none;">Get Another Joke</button>
+            </div>
+            <div id="joke" class="joke" aria-live="polite"></div>
+        </div>
+    </main>
+    <footer>
+        <nav>
+            <a href="scratch.html">Go to Scratch Page</a>
+            <span>|</span>
+            <a href="index.html">Back to Home</a>
+        </nav>
+    </footer>
+    <script>
+        const jokes = [
+            "Why don't killer whales make good comedians? Because they always whale on their jokes!",
+            "What do you call a whale who can play music? An orca-strator!",
+            "Why did the killer whale break up with the fish? Because it found a better catch!",
+            "Why did the orca bring a towel to the party? Because it wanted to make a splash!",
+            "How do killer whales stay in shape? They do plenty of 'whale' stretches!"
+        ];
+
+        const jokeDiv = document.getElementById('joke');
+        const generateJokeButton = document.getElementById('generateJoke');
+        const anotherJokeButton = document.getElementById('anotherJoke');
+        let lastJokeIndex = -1;
+
+        function getRandomJoke() {
+            let randomIndex;
+            do {
+                randomIndex = Math.floor(Math.random() * jokes.length);
+            } while (randomIndex === lastJokeIndex && jokes.length > 1);
+            lastJokeIndex = randomIndex;
+            jokeDiv.textContent = jokes[randomIndex];
+            anotherJokeButton.style.display = 'inline-block';
+        }
+
+        generateJokeButton.addEventListener('click', function() {
+            getRandomJoke();
+            generateJokeButton.style.display = 'none';
+        });
+
+        anotherJokeButton.addEventListener('click', function() {
+            getRandomJoke();
+        });
+    </script>
+</body>
+</html>
